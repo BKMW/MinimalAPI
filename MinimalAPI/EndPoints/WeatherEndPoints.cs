@@ -1,15 +1,14 @@
-﻿using MinimalAPI.Models;
-using MinimalAPI.Services;
+﻿using Application.Services;
 
 namespace MinimalAPI.EndPoints
 {
     public static class WeatherEndPoints
     {
-        public static void UseWeatherEndPoints( this IEndpointRouteBuilder app)
+        public static void UseWeatherEndPoints(this IEndpointRouteBuilder app)
         {
             app.MapGet("/weatherforecast", (IWeatherForecastServices _weatherForecastServices) =>
             {
-               return   _weatherForecastServices.GetWeather();
+                return _weatherForecastServices.GetWeather();
             })
               .WithName("GetWeatherForecast")
               .WithOpenApi();
@@ -21,6 +20,6 @@ namespace MinimalAPI.EndPoints
             });
         }
 
-          
+
     }
 }

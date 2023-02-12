@@ -1,10 +1,10 @@
-﻿using MinimalAPI.Models;
+﻿using Domain.Models;
 
-namespace MinimalAPI.Services
+namespace Application.Services
 {
-    public class WeatherForecastServices: IWeatherForecastServices
+    public class WeatherForecastServices : IWeatherForecastServices
     {
-        public  string[] summaries = new string[]
+        private static readonly string[] summaries = new[]
         {
                 "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
