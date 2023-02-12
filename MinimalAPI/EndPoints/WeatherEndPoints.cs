@@ -21,7 +21,7 @@ namespace MinimalAPI.EndPoints
             {
                 return _weatherForecastServices.GetWeather();
             })
-            .RequireAuthorization()
+            //.RequireAuthorization()
             .WithTags("Users");
         }
 
