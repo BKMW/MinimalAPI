@@ -1,4 +1,5 @@
 ﻿using Application.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MinimalAPI.EndPoints
 {
@@ -14,10 +15,14 @@ namespace MinimalAPI.EndPoints
               .WithOpenApi();
 
 
-            app.MapGet("/List", (IWeatherForecastServices _weatherForecastServices) =>
+            app.MapGet("/List",
+               // [Authorize]
+                (IWeatherForecastServices _weatherForecastServices) =>
             {
                 return _weatherForecastServices.GetWeather();
-            });
+            })
+            .RequireAuthorization()
+            .WithTags("Users");
         }
 
 
