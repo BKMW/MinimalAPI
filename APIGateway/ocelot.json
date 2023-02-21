@@ -1,0 +1,81 @@
+{
+  "Routes": [
+    // Auth API
+    {
+      "DownstreamPathTemplate": "/api/Account",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5125
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Account",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    // Get List [Authorize(Roles = "User")]
+
+    {
+      "DownstreamPathTemplate": "/ListDemo",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5170
+        }
+      ],
+      "UpstreamPathTemplate": "/ListDemo",
+      "UpstreamHttpMethod": [ "Get" ],
+      // Authorization By  Role
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      // Authorization By  Role
+      "RouteClaimsRequirement": {
+        "Role": "User"
+      }
+    },
+    // Get List [Authorize(Roles = "Admin")]
+
+    {
+      "DownstreamPathTemplate": "/List",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5170
+        }
+      ],
+      "UpstreamPathTemplate": "/List",
+      "UpstreamHttpMethod": [ "Get" ],
+      // Authorization 
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      // Authorization By  Role
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      },
+
+
+      // Limit Request
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "30s",
+        "PeriodTimespan": 30,
+        "Limit": 1
+      }
+    }
+
+  ],
+
+  "GlobalConfiguration": {
+    "RateLimitOptions": {
+      "QuotaExceededMessage": "Request Not Alowed",
+      "HttpStatusCode": 909
+      }
+    }
+  }
