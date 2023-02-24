@@ -49,18 +49,22 @@
       ],
       "UpstreamPathTemplate": "/List",
       "UpstreamHttpMethod": [ "Get" ],
-      // Authorization 
+      //** Authorization
+
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": []
       },
-      // Authorization By  Role
+
+      //** Authorization By  Role
+
       "RouteClaimsRequirement": {
         "Role": "Admin"
       },
 
 
       // Limit Request
+
       "RateLimitOptions": {
         "ClientWhitelist": [],
         "EnableRateLimiting": true,
@@ -73,9 +77,10 @@
   ],
 
   "GlobalConfiguration": {
+    //Specific error message for RateLimitOptions
     "RateLimitOptions": {
       "QuotaExceededMessage": "Request Not Alowed",
       "HttpStatusCode": 909
-      }
     }
+  }
   }

@@ -35,7 +35,7 @@ namespace JwtAuthManager
             var claimsIdentity = new ClaimsIdentity(new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Name, userAccount.UserName),
-                //new Claim(ClaimTypes.Role, userAccount.Role),
+                new Claim(ClaimTypes.Role, userAccount.Role),
                 // For Ocelot
                 new Claim("Role", userAccount.Role),
 

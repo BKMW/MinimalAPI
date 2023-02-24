@@ -8,7 +8,7 @@ namespace MinimalAPI.EndPoints
         public static void UseWeatherEndPoints(this IEndpointRouteBuilder app)
         {
             app.MapGet("/ListDemo",
-            //[Authorize(Roles = "User")]
+            [Authorize(Roles = "User")]
             (IWeatherForecastServices _weatherForecastServices) =>
             {
                 return _weatherForecastServices.GetWeather();
@@ -18,7 +18,7 @@ namespace MinimalAPI.EndPoints
 
 
             app.MapGet("/List",
-               // [Authorize(Roles = "Admin")]
+                [Authorize(Roles = "Admin")]
                 (IWeatherForecastServices _weatherForecastServices) =>
             {
                 return _weatherForecastServices.GetWeather();
