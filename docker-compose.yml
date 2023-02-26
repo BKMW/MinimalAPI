@@ -1,0 +1,39 @@
+version: '3.4'
+#Network
+networks:
+  demoMicroServices:
+
+services:
+  #
+  authapi:
+    container_name: auth-api
+    build:
+      context: .
+      dockerfile: AuthAPI/Dockerfile
+    image: ${DOCKER_REGISTRY-}authapi
+    networks:
+      demoMicroServices:
+  #
+  minimalapi:
+    container_name: minimal-api
+    build:
+      context: .
+      dockerfile: MinimalAPI/Dockerfile
+    image: ${DOCKER_REGISTRY-}minimalapi
+    networks:
+      demoMicroServices:
+  # API Gateway
+  apigateway:
+    container_name: api-gateway
+    build:
+      context: .
+      dockerfile: APIGateway/Dockerfile
+    image: ${DOCKER_REGISTRY-}apigateway
+    ports:
+      - "8001:80"
+    #environment:
+    #  - AUTH_API_URL=http://authapi:5000
+    #depends_on:
+    #  - authapi
+    networks:
+      demoMicroServices:

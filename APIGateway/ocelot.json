@@ -6,8 +6,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5125
+          "Host": "authapi",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/Account",
@@ -20,8 +20,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5170
+          "Host": "minimalapi",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ListDemo",
@@ -43,8 +43,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5170
+          "Host": "minimalapi",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/List",
