@@ -4,7 +4,18 @@ networks:
   demoMicroServices:
 
 services:
-  #
+  #DB
+  customerdb:
+   container_name: customer-db
+   image: mcr.microsoft.com/mssql/server:2022-latest
+   environment:
+    - ACCEPT_EULA=Y
+    - MSSQL_SA_PASSWORD=Azerty123+
+   networks:
+    - demoMicroServices
+   ports:
+    - 1433:1433
+  ##
   authapi:
     container_name: auth-api
     build:
@@ -22,6 +33,10 @@ services:
     image: ${DOCKER_REGISTRY-}minimalapi
     networks:
       demoMicroServices:
+    environment:
+     - DB_HOST= customerdb
+     - DB_NAME= dms_customer
+     - DB_SA_PASSWORD= abc123
   # API Gateway
   apigateway:
     container_name: api-gateway
